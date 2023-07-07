@@ -1,0 +1,40 @@
+<script>
+    function insert_new_line(target, display, name, value, placeholder, type){
+        let number_of_rows = document.getElementById(`i_${target}`).value
+        let new_row = document.getElementById(`t_${target}`).insertRow(number_of_rows);
+        new_row.insertCell(-1).innerHTML=`<h3 onclick='load_to_result("${target}")' class='display'>${display}</h3>`
+        new_row.insertCell(-1).innerHTML=`<input type='checkbox' id='cb_${target}_${number_of_rows} onclick='load_to_result("${target}")' onchange=load_to_result("${target}">`
+        new_row.insertCell(-1).innerHTML=`<input name='${name}' id='kom_${target}_${number_of_rows}' value='${value}'  placeholder='${placeholder}' onclick='load_to_result("${target}")' onchange=load_to_result("${target}")'>`        
+        
+        document.getElementById(`i_${target}`).value = parseInt(number_of_rows)+1
+    }
+    function load_to_result(target){
+        let result = document.getElementById('result')
+        let number_of_rows = document.getElementById(`i_${target}`).value
+        result.innerHTML=""
+        for(i=0; i<number_of_rows; i++){
+            result.innerHTML+= document.getElementById(`kom_${target}_${i}`).value
+            
+            result.innerHTML+= "<br>"
+        }
+    }
+</script>
+<html>
+<body>
+    <div id='master'>
+        <input id='i_ipad' value='0'>
+        <div id='ipad'>
+            <table id='t_ipad'>
+            </table>
+        </div>
+        <div id='result'>
+        </div>
+    </div>
+</body>
+<script>
+    insert_new_line('ipad', 'Szybka', "szybka", 'Zbita', '', '')
+    
+    insert_new_line('ipad', 'Ekran', "ekran", '', '', '')
+</script>
+
+</html>
