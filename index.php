@@ -21,6 +21,12 @@ else if (type=="com"){
         new_row.insertCell(-1).innerHTML=`<h3 class='display'>${display}</h3><input id='dis_${target}_${number_of_rows}' value='${display}' hidden>`
         new_row.insertCell(-1).innerHTML=`<input name='${name}' id='com_${target}_${number_of_rows}' value='${value}'  placeholder='${placeholder}' onchange='load_to_result("${target}", "${value}")'>`        
 }
+else if (type=="url"){
+    new_row.insertCell(-1).innerHTML=`<input hidden type='checkbox' id='cb_${target}_${number_of_rows}' onchange='load_to_result("${target}", "${value}")'>`
+    new_row.insertCell(-1).innerHTML=`<h3 onclick='open_tab("${value}")' class='display'>${display}</h3>`
+
+
+}
 else{
         new_row.insertCell(-1).innerHTML=`<input type='checkbox' id='cb_${target}_${number_of_rows}' onclick='load_to_result("${target}", "${value}")' onchange='load_to_result("${target}", "${value}")'>`
         new_row.insertCell(-1).innerHTML=`<h3 onclick='cheange_state("cb_${target}_${number_of_rows}"), load_to_result("${target}", "${value}")' class='display'>${display}</h3><input id='dis_${target}_${number_of_rows}' value='${display}' hidden>`
@@ -63,6 +69,9 @@ else{
         }
 
     }
+    function open_tab(url){
+        window.open(url);
+    }
     function update_bat(target, row){
         let b1=document.getElementById(`b1_${target}_${row}`)
         let b2=document.getElementById(`b2_${target}_${row}`)
@@ -94,12 +103,12 @@ else{
     }
 </script>
 <html>
-    <head><title>Checklista v3.0</title></head>
+    <head><title>Checklista v3.1</title></head>
     <link rel="stylesheet" href="style.css">
 <body>
     <div id='master'>
         <div id='header' onclick='refresh()' >
-           <b><p id='title'>Checklista v3.0</p></b>
+           <b><p id='title'>Checklista v3.1</p></b>
             <p onclick='refresh()' id='reset' class="clickable">
                 Kliknij aby zresetować 
             </p>
@@ -174,6 +183,8 @@ else{
     insert_new_line('macbook', 'Obciążenie', "obciazenie", '', '', '')
     insert_new_line('macbook', 'Bateria', "bateria", '', '', 'bat')
     insert_new_line('macbook', 'Komentarz', "komentarz", '', '', 'com')
+    insert_new_line('macbook',  "Key test", 'key', 'https://key-test.ru/',  '', 'url')
+    insert_new_line('macbook',  "Stereo test", 'stero', 'https://www.youtube.com/watch?v=6TWJaFD6R2s&t=27s',  '', 'url')
 
     insert_new_line('iphone', 'Szybka', "szybka", 'Zbita', '', '')
     insert_new_line('iphone', 'Dotyk', "fotyk", '', '', '')
