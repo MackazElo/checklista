@@ -49,7 +49,7 @@ else{
                  
                     comment.value=""
                 }
-                result.innerHTML+="DZIAŁA"
+                result.innerHTML+="OK"
                 if (comment.value!=""){
                     result.innerHTML+=", "
                 }
@@ -101,12 +101,26 @@ else{
         document.getElementById('choose').hidden=true;
         document.getElementById(selected).hidden=false;
     }
+    function overlay(mode){
+        target=document.getElementById("overlay")
+        if(mode=="close"){
+            target.hidden=true;
+        }
+        else{
+            // target.innerHTML=`<input type='button' onclick="overlay('close')" value='X'><br>`
+            target.hidden=false;
+            target.innerHTML=`<iframe src="${mode}" width="90%" height="90%"></iframe>`
+        }
+    }
 </script>
 <html>
-    <head><title>Checklista v3.1</title></head>
+    <head><title>Checklista v3.2</title></head>
     <link rel="stylesheet" href="style.css">
 <body>
     <div id='master'>
+        <div id='overlay' onclick="overlay('close')" hidden>
+            <!-- <input type='button' onclick="overlay('close')" value='X'> -->
+        </div>
         <div id='header' onclick='refresh()' >
            <b><p id='title'>Checklista v3.1</p></b>
             <p onclick='refresh()' id='reset' class="clickable">
@@ -153,18 +167,26 @@ else{
         <div id='copy' class='clickable'onclick='copy()'>
             Kopiuj
         </div>
+        <div id='links' onclick='copy()'>
+            <h3 onclick="overlay('https://key-test.ru')" class="display">Key test</h3><br>
+            <h3 onclick="overlay('https://www.youtube.com/embed/6TWJaFD6R2s?si=qqNQYxD2xsp1H44N&t=6s')" class="display">Stereo test</h3><br>
+            <h3 onclick="overlay('https://www.eizo.be/monitor-test/')" class="display">Screen test</h3><br>
+            <h3 onclick="open_tab('smb://192.168.2.222/macapps')" class="display">Mac Apps</h3>
+        </div>
     </div>
 </body>
 <script>
     insert_new_line('ipad', 'Szybka', "szybka", 'Zbita', '', '')
-    insert_new_line('ipad', 'Dotyk', "fotyk", '', '', '')
     insert_new_line('ipad', 'Ekran', "ekran", '', '', '')
-    insert_new_line('ipad', 'Przyciski', "przyciski", '', '', '')
-    insert_new_line('ipad', 'Kamery', "kamery", '', '', '')
-    insert_new_line('ipad', 'Audio', "audio", '', '', '')
+    insert_new_line('ipad', 'Dotyk', "dotyk", '', '', '')
     insert_new_line('ipad', 'Touch id/Face id', "tid", 'Nie dotyczy', '', '')
     insert_new_line('ipad', 'Wifi', "wifi", '', '', '')
+    insert_new_line('ipad', 'Kamery', "kamery", '', '', '')
+    insert_new_line('ipad', 'Przyciski', "przyciski", '', '', '')
+    insert_new_line('ipad', 'Audio', "audio", '', '', '')
     insert_new_line('ipad', 'Rotacja', "rotacja", '', '', '')
+    insert_new_line('ipad', 'Obudowa', "obudowa", 'wygięta', '', '')
+    insert_new_line('ipad', 'Dock', "dock", '', '', '')
     insert_new_line('ipad', 'Bateria', "bateria", '', '', 'bat')
     insert_new_line('ipad', 'Komentarz', "komentarz", '', '', 'com')
 
@@ -174,20 +196,20 @@ else{
     insert_new_line('macbook', 'Kamera', "kamera", '', '', '')
     insert_new_line('macbook', 'Wi-Fi', "wifi", '', '', '')
     insert_new_line('macbook', 'Głośnik', "glosnik", '', '', '')
-    insert_new_line('macbook', 'Mikrofon', "mikrofon", '', '', '')
     insert_new_line('macbook', 'Klawiatura', "klawiatura", '', '', '')
+    insert_new_line('macbook', 'Touch id', "tid", 'Nie dotyczy', '', '')
+    insert_new_line('macbook', 'Mikrofon', "mikrofon", '', '', '')
     insert_new_line('macbook', 'Touchpad', "touchpad", '', '', '')
     insert_new_line('macbook', 'USB', "usb", '', '', '')
     insert_new_line('macbook', 'Wentylator', "wentylator", '', '', '')
     insert_new_line('macbook', 'Temperatury', "temperatury", '', '', '')
-    insert_new_line('macbook', 'Obciążenie', "obciazenie", '', '', '')
+    insert_new_line('macbook', 'Obciążenie', "obciazenie", 'Nie testowane', '', '')
     insert_new_line('macbook', 'Bateria', "bateria", '', '', 'bat')
     insert_new_line('macbook', 'Komentarz', "komentarz", '', '', 'com')
-    insert_new_line('macbook',  "Key test", 'key', 'https://key-test.ru/',  '', 'url')
-    insert_new_line('macbook',  "Stereo test", 'stero', 'https://www.youtube.com/watch?v=6TWJaFD6R2s&t=27s',  '', 'url')
+
 
     insert_new_line('iphone', 'Szybka', "szybka", 'Zbita', '', '')
-    insert_new_line('iphone', 'Dotyk', "fotyk", '', '', '')
+    insert_new_line('iphone', 'Dotyk', "dotyk", '', '', '')
     insert_new_line('iphone', 'Ekran', "ekran", '', '', '')
     insert_new_line('iphone', 'Przyciski', "przyciski", '', '', '')
     insert_new_line('iphone', 'Kamery', "kamery", '', '', '')
