@@ -121,6 +121,9 @@ user-select: none;
   user-select: none;
       
   }
+#iframe_window{
+  overflow: hidden;
+}
 
 #checklist{
 grid-area: checklist;

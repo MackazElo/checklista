@@ -105,16 +105,23 @@ else{
         target=document.getElementById("overlay")
         if(mode=="close"){
             target.hidden=true;
+            target.innerHTML=""
         }
         else{
             // target.innerHTML=`<input type='button' onclick="overlay('close')" value='X'><br>`
             target.hidden=false;
-            target.innerHTML=`<iframe src="${mode}" width="90%" height="90%"></iframe>`
+            target.innerHTML=`<iframe src="${mode}" id='iframe_window' width="90%" height="90%" ></iframe><br><h5>Jeśli strona nie reaguje naciśnij TAB</h5>`
+            document.getElementById('keyboard').focus()
         }
     }
+    function popup(url){
+       newwindow=window.open(url,"AFT Test",'height=600,width=800');
+       if (window.focus) {newwindow.focus()}
+       return false;
+     }
 </script>
 <html>
-    <head><title>Checklista v3.2</title></head>
+    <head><title>Checklista v3.3</title></head>
     <link rel="stylesheet" href="style.css">
 <body>
     <div id='master'>
@@ -122,7 +129,7 @@ else{
             <!-- <input type='button' onclick="overlay('close')" value='X'> -->
         </div>
         <div id='header' onclick='refresh()' >
-           <b><p id='title'>Checklista v3.1</p></b>
+           <b><p id='title'>Checklista v3.3</p></b>
             <p onclick='refresh()' id='reset' class="clickable">
                 Kliknij aby zresetować 
             </p>
@@ -168,9 +175,9 @@ else{
             Kopiuj
         </div>
         <div id='links' onclick='copy()'>
-            <h3 onclick="overlay('https://key-test.ru')" class="display">Key test</h3><br>
+            <h3 onclick="overlay('https://en.key-test.ru')" class="display">Key test</h3><br>
             <h3 onclick="overlay('https://www.youtube.com/embed/6TWJaFD6R2s?si=qqNQYxD2xsp1H44N&t=6s')" class="display">Stereo test</h3><br>
-            <h3 onclick="overlay('https://www.eizo.be/monitor-test/')" class="display">Screen test</h3><br>
+            <h3 onclick="popup('https://www.eizo.be/monitor-test/')" class="display">Screen test</h3><br>
             <h3 onclick="open_tab('smb://192.168.2.222/macapps')" class="display">Mac Apps</h3>
         </div>
     </div>
