@@ -97,6 +97,12 @@ else{
     function refresh(){
         window.location.reload()
     }
+    function focus_on_keyboard(){
+        alert("a")
+        document.getElementById("iframe_window").contentWindow.focus()
+        console.log(document.getElementById("iframe_window"))
+
+    }
     function choose(selected){
         document.getElementById('choose').hidden=true;
         document.getElementById(selected).hidden=false;
@@ -110,10 +116,16 @@ else{
         else{
             // target.innerHTML=`<input type='button' onclick="overlay('close')" value='X'><br>`
             target.hidden=false;
-            target.innerHTML=`<iframe src="${mode}" id='iframe_window' width="90%" height="90%" ></iframe><br><h5>Jeśli strona nie reaguje naciśnij TAB</h5>`
-            document.getElementById('keyboard').focus()
+            target.innerHTML=`<iframe src="${mode}" id='iframe_window' width="90%" height="90%" ></iframe><br>`
+            // setTimeout(focus_on_keyboard(), 500000)
+            setTimeout(() => {
+                document.getElementById("iframe_window").contentWindow.focus()
+
+}, 3000);
+            
         }
     }
+   
     function popup(url){
        newwindow=window.open(url,"AFT Test",'height=600,width=800');
        if (window.focus) {newwindow.focus()}
@@ -121,7 +133,7 @@ else{
      }
 </script>
 <html>
-    <head><title>Checklista v3.3</title></head>
+    <head><title>Checklista v3.4</title></head>
     <link rel="stylesheet" href="style.css">
 <body>
     <div id='master'>
@@ -129,7 +141,7 @@ else{
             <!-- <input type='button' onclick="overlay('close')" value='X'> -->
         </div>
         <div id='header' onclick='refresh()' >
-           <b><p id='title'>Checklista v3.3</p></b>
+           <b><p id='title'>Checklista v3.4</p></b>
             <p onclick='refresh()' id='reset' class="clickable">
                 Kliknij aby zresetować 
             </p>
@@ -174,7 +186,7 @@ else{
         <div id='copy' class='clickable'onclick='copy()'>
             Kopiuj
         </div>
-        <div id='links' onclick='copy()'>
+        <div id='links'>
             <h3 onclick="overlay('https://en.key-test.ru')" class="display">Key test</h3><br>
             <h3 onclick="overlay('https://www.youtube.com/embed/6TWJaFD6R2s?si=qqNQYxD2xsp1H44N&t=6s')" class="display">Stereo test</h3><br>
             <h3 onclick="popup('https://www.eizo.be/monitor-test/')" class="display">Screen test</h3><br>
