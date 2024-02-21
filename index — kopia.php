@@ -133,7 +133,7 @@ else{
      }
 </script>
 <html>
-    <head><title>Checklista v3.5</title></head>
+    <head><title>Checklista v3.4</title></head>
     <link rel="stylesheet" href="style.css">
 <body>
     <div id='master'>
@@ -141,7 +141,7 @@ else{
             <!-- <input type='button' onclick="overlay('close')" value='X'> -->
         </div>
         <div id='header' onclick='refresh()' >
-           <b><p id='title'>Checklista v3.5</p></b>
+           <b><p id='title'>Checklista v3.4</p></b>
             <p onclick='refresh()' id='reset' class="clickable">
                 Kliknij aby zresetować 
             </p>
@@ -152,13 +152,10 @@ else{
                     iPad
                 </div>
                 <div id='button_ipad' class='clickable choose_button' onclick="choose('macbook')">
-                    MacBook
+                    Macbook
                 </div>
                 <div id='button_ipad'class='clickable choose_button' onclick="choose('iphone')">
                     iPhone
-                </div>
-                <div id='button_ipad'class='clickable choose_button' onclick="choose('imac')">
-                    iMac
                 </div>
                
             </div>
@@ -180,12 +177,6 @@ else{
                 <input id='i_iphone' value='0' hidden>
                 <h1>iPhone</h1>
                 <table id='t_iphone'>
-                </table>
-            </div>
-            <div id='imac' hidden>
-                <input id='i_imac' value='0' hidden>
-                <h1>iMac</h1>
-                <table id='t_imac'>
                 </table>
             </div>
         </div>
@@ -235,18 +226,6 @@ else{
     insert_new_line('macbook', 'Obciążenie', "obciazenie", 'Nie testowane', '', '')
     insert_new_line('macbook', 'Bateria', "bateria", '', '', 'bat')
     insert_new_line('macbook', 'Komentarz', "komentarz", '', '', 'com')
-
-    insert_new_line('imac', 'Ekran', "ekran", '', '', '')
-    insert_new_line('imac', 'Jasność', "jasnosc", '', '', '')
-    insert_new_line('imac', 'Kamera', "kamera", '', '', '')
-    insert_new_line('imac', 'Wi-Fi', "wifi", '', '', '')
-    insert_new_line('imac', 'Głośnik', "glosnik", '', '', '')
-    insert_new_line('imac', 'Mikrofon', "mikrofon", '', '', '')
-    insert_new_line('imac', 'USB', "usb", '', '', '')
-    insert_new_line('imac', 'Wentylator', "wentylator", '', '', '')
-    insert_new_line('imac', 'Temperatury', "temperatury", '', '', '')
-    insert_new_line('imac', 'Obciążenie', "obciazenie", 'Nie testowane', '', '')
-    insert_new_line('imac', 'Komentarz', "komentarz", '', '', 'com')
 
 
     insert_new_line('iphone', 'Szybka', "szybka", 'Zbita', '', '')
