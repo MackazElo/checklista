@@ -1,11 +1,14 @@
 <script>
     function copy() {
+       document.getElementById("result").style="font-family:Arial;"
 		var range = document.createRange();
+        
 		range.selectNode(document.getElementById("result"));
 		window.getSelection().removeAllRanges(); 
 		window.getSelection().addRange(range); 
 		document.execCommand("copy");
 		window.getSelection().removeAllRanges();
+        document.getElementById("result").style="   font-family: 'Roboto Mono', monospace;"
 	}
     function insert_new_line(target, display, name, value, placeholder, type){
         let number_of_rows = document.getElementById(`i_${target}`).value
@@ -134,8 +137,228 @@ else{
 </script>
 <html>
     <head><title>Checklista v3.5</title></head>
-    <link rel="stylesheet" href="style.css">
+   
 <body>
+    <style>
+            body{
+                font-family: 'Roboto Mono', monospace;
+                background-color: rgb(242, 240, 240); 
+            }
+            #master{
+                display: grid;
+                grid-template-areas:
+                'header header header links copy'
+                'checklist checklist checklist result result';
+                grid-template-columns: 25% 25% 10% 20% 20%;
+                grid-template-rows: 15% 85%;
+                font-family: 'Roboto Mono', monospace;
+                height: 100%;
+                width: 100%;
+            }
+            div{
+                user-select: none;
+            }
+            #ipad{
+                grid-area: ipad;
+                overflow: auto;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-left: 15px;
+                
+            }
+            #iphone{
+                grid-area: iphone;
+                overflow: auto;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;    
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-left: 15px;
+            }
+            #macbook{
+                grid-area: macbook;
+                overflow: auto;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-left: 15px;
+            }
+            #imac{
+                grid-area: imac;
+                overflow: auto;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-left: 15px;
+            }
+            #result{
+                grid-area: result;
+                overflow: auto;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-left: 15px;
+                padding-top: 15px;
+                font-size:20px;
+                user-select:text;
+            }
+            #header{
+                grid-area: header;
+                overflow: hidden;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                font-size: 30px;
+                padding-left: 15px;
+                user-select: none;
+                display:grid;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: -20px;
+                padding-top: -20px;
+                 }
+            #reset{
+                font-size:20px;
+                cursor: pointer;
+                margin-top: -25px;
+                user-select: none;
+            }
+            #title{
+                margin-top: 0px;
+            }
+            #copy{
+                grid-area: copy;
+                overflow: auto;
+                text-align:center;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size:30px;
+                cursor: pointer;
+                user-select: none;
+            }
+            #overlay{
+                height: 99vh;
+                width: 99vw;
+                text-align: center;
+                position: absolute;
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+
+            #links{
+                grid-area: links;
+                overflow: auto;
+                text-align:center;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                justify-content: center;
+                align-items: center;
+                font-size:11px;
+                cursor: pointer;
+                
+                user-select: none;
+                    
+            }
+            #iframe_window{
+                overflow: hidden;
+            }
+
+            #checklist{
+                grid-area: checklist;
+                overflow: auto;
+                padding: 5px;
+            }
+            .menu_position{
+                overflow: auto;
+                text-align:center;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-top: 10px;
+                font-size:30px;
+
+                user-select: none;
+                    
+                grid-area: clear;
+            }
+            .display{
+                    cursor: pointer;
+            }
+            .clickable{
+                cursor: pointer;
+                
+                transition: color 0.2s;
+            }
+            .clickable:hover{
+                color:cornflowerblue;
+                transition: color 0.2s;
+
+            }
+            .clickable:active{
+                color:violet;
+                
+            }
+
+            .choose_button{
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 7px;
+                border: solid 2px black;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                margin: 13px;
+                padding-top: 10px;
+                font-size:30px;
+                height: 20%;
+                width: 30%;
+                text-align: center;
+                display:inline-flex;
+
+                justify-content: center;
+                align-items: center;
+            }
+
+            .display{
+                cursor: pointer;
+                user-select: none;
+                display:inline-flex;
+
+                justify-content: center;
+                align-items: center;
+                margin: 5px;
+            }
+            .display:hover{
+                color:cornflowerblue;
+                transition: color 0.2s;
+                
+            }
+            .display:active{
+                color:violet;
+                    
+            }
+
+
+    </style>
     <div id='master'>
         <div id='overlay' onclick="overlay('close')" hidden>
             <!-- <input type='button' onclick="overlay('close')" value='X'> -->
@@ -211,6 +434,7 @@ else{
     insert_new_line('ipad', 'Touch id/Face id', "tid", 'Nie dotyczy', '', '')
     insert_new_line('ipad', 'Wifi', "wifi", '', '', '')
     insert_new_line('ipad', 'Kamery', "kamery", '', '', '')
+    insert_new_line('ipad', 'LIDAR', "lidar", 'Nie dotyczy', '', '')
     insert_new_line('ipad', 'Przyciski', "przyciski", '', '', '')
     insert_new_line('ipad', 'Audio', "audio", '', '', '')
     insert_new_line('ipad', 'Rotacja', "rotacja", '', '', '')
@@ -254,14 +478,14 @@ else{
     insert_new_line('iphone', 'Ekran', "ekran", '', '', '')
     insert_new_line('iphone', 'Przyciski', "przyciski", '', '', '')
     insert_new_line('iphone', 'Kamery', "kamery", '', '', '')
+    insert_new_line('iphone', 'LIDAR', "lidar", 'Nie dotyczy', '', '')
     insert_new_line('iphone', 'Audio', "audio", '', '', '')
     insert_new_line('iphone', 'Kompas', "kompas", '', '', '')
     insert_new_line('iphone', 'Ambient light', "ambient", '', '', '')
     insert_new_line('iphone', 'Proxymity', "proxy", '', '', '')
     insert_new_line('iphone', 'NFC', "nfc", '', '', '')
-    insert_new_line('iphone', 'Indukcja', "indukcja", '', '', '')
-    insert_new_line('iphone', 'Zasięg', "zasieg", '', '', '')
-    insert_new_line('iphone', 'Rozmowy', "rozmowy", '', '', '')
+    insert_new_line('iphone', 'Indukcja', "indukcja", 'Nie dotyczy', '', '')
+    insert_new_line('iphone', 'Półączenia', "polaczenia", '', '', '')
     insert_new_line('iphone', 'Latarka', "latarka", '', '', '')
     insert_new_line('iphone', 'Touch id/Face id', "tid", 'Nie dotyczy', '', '')
     insert_new_line('iphone', 'Wifi Bluetooth', "wifi", '', '', '')
